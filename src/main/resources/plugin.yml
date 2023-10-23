@@ -1,0 +1,61 @@
+name: TohuManagement
+version: '${project.version}'
+main: com.tohu.tohumanagement.TohuManagement
+api-version: 1.20
+commands:
+  tofu:
+    description: tohu command
+  tofu login authCode:
+    description: login tohu
+  tofu auth authCode:
+    description : auth tohu
+  tofu spawn location:
+    description: spawn tohu
+  tofu time day:
+    description: change time day
+  tofu time night:
+    description: change time night
+  tofu time true:
+    description: change time
+  tofu time false:
+    description: stop change time
+  tofu tp playerName:
+    description: teleport to player
+  tofu set spawn:
+    description: set spawn location
+  tofu gamemode survival:
+    description: change gamemode survival
+  tofu gamemode creative:
+    description: change gamamode creative
+  tofu gamemode survival Player_name:
+    description: change gamemode survival
+  tofu gamemode creative Player_name:
+    description: change gamemode creative
+  tofu weather clear:
+    description: weather clear
+  tofu weather rain:
+    description: weather rain
+#  tohu permission group:
+#    description: display permission
+  tofu animals true:
+    description: appear animal
+  tofu animals false:
+    description: not appear animal
+  tofu monsters true:
+    description: appear monster
+  tofu monsters false:
+    description: not appear monster
+  tofu mob kill:
+    description: mob kill
+  tofu chat msg playerName:
+    description: party chat
+#  tohu cc create judgeType:
+#    description: create question
+#  tohu help:
+#    description: help
+#  tohu set name:
+#    description: set name
+#  tohu world list:
+#    description: world list
+  tofu give item:
+    description: give item
