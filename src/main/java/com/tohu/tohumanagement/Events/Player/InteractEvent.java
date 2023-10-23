@@ -30,6 +30,7 @@ public class InteractEvent implements Listener {
                 switch (material) {
                     case LAVA_BUCKET:
                     case FLINT_AND_STEEL:
+                    case FIRE_CHARGE:
                         e.setUseItemInHand(Event.Result.DENY);
                 }
             }

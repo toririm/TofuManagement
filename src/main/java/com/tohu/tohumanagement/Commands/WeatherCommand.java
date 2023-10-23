@@ -1,11 +1,13 @@
 package com.tohu.tohumanagement.Commands;
 
 import org.bukkit.ChatColor;
+import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 public class WeatherCommand {
     public static boolean weatherCommand(String type, Player player, World world) {
+        GameRule<Boolean> doWeatherCycle = GameRule.DO_WEATHER_CYCLE;
 
 
         switch (type) {
@@ -26,7 +28,7 @@ public class WeatherCommand {
                 return true;
         }
         if (type.equals("true") || type.equals("false")) {
-            world.setGameRuleValue("doWeatherCycle", type);
+            world.setGameRule(doWeatherCycle, Boolean.valueOf(type));
             if (type.equals("true")) {
                 player.sendMessage("天気の固定を無効化しました");
             } if (type.equals("false")) {

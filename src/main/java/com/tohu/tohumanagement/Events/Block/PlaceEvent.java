@@ -23,6 +23,8 @@ public class PlaceEvent implements Listener {
         Block block = e.getBlock();
         switch (block.getType()) {
             case TNT:
+            case FIRE:
+            case MAGMA_BLOCK:
                 e.setCancelled(true);
         }
 

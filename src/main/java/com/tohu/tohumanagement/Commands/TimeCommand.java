@@ -2,12 +2,14 @@ package com.tohu.tohumanagement.Commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 public class TimeCommand {
     // 朝、夜、時間の固定、時間の固定解除
     public static boolean timeCommand(String type, Player player, World world) {
+        GameRule<Boolean> doDaylightCycle = GameRule.DO_DAYLIGHT_CYCLE;
         switch (type) {
             case "day":
                 world.setTime(0);
@@ -18,11 +20,11 @@ public class TimeCommand {
                 player.sendMessage("時間を夜にします");
                 return true;
             case "true":
-                world.setGameRuleValue("doDaylightCycle", type);
+                world.setGameRule(doDaylightCycle, Boolean.valueOf(type));
                 player.sendMessage("時間の固定を無効化しました");
                 return true;
             case "false":
-                world.setGameRuleValue("doDaylightCycle", type);
+                world.setGameRule(doDaylightCycle, Boolean.valueOf(type));
                 player.sendMessage("時間の固定を有効化しました");
                 return true;
             default:

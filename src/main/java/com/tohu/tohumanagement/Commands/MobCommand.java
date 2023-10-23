@@ -1,11 +1,13 @@
 package com.tohu.tohumanagement.Commands;
 
+import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.entity.*;
 
 public class MobCommand {
 
     public static boolean mobCommand(String type, Player player, World world) {
+        GameRule<Boolean> doMobSpawning = GameRule.DO_MOB_SPAWNING;
         if (type.equals("kill")) {
             for (Entity e: world.getEntities()) {
                 if (e instanceof Monster) {
@@ -25,7 +27,7 @@ public class MobCommand {
             return true;
         }if (type.equals("true") || type.equals("false")) {
 
-            world.setGameRuleValue("doMobSpawning", type);
+            world.setGameRule(doMobSpawning, Boolean.valueOf(type));
             if (type.equals("true")) {
                 player.sendMessage("Mobが発生するようになりました");
             } else {
