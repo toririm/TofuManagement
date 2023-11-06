@@ -1,6 +1,7 @@
 package com.tohu.tohumanagement.Commands;
 
 import com.tohu.tohumanagement.Services.*;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class LoginCommand {
@@ -9,7 +10,11 @@ public class LoginCommand {
         String worldName = player.getWorld().getName();
         String playerName = player.getName();
         //認証してるかどうか
-        if (authCode != null) {
+        if (authCode.isEmpty() || authCode.length() > 4) {
+            player.sendMessage("認証コードが間違えてるよ");
+            Bukkit.getLogger().info("認証コードが間違えてるよ");
+            return false;
+        } else {
             player.sendMessage("認証中です");
             String json = AuthManagement.auth(authCode, player);
             boolean authorized = AuthorizedUtil.getAuthorized(json);
@@ -24,18 +29,15 @@ public class LoginCommand {
                 player.sendMessage("あなたの権限は" + role + "です");
                 if (role == 3) {
                     PermissionManagement.changeParentGroup(player, "admin");
-
                 } else {
                     PermissionManagement.changeParentGroup(player, "owner");
                 }
                 return true;
             } else {
                 player.sendMessage("認証に失敗しました");
+                Bukkit.getLogger().info("認証に失敗しました");
                 return false;
             }
-        } else {
-            player.sendMessage("コマンドが間違えてるよ");
-            return false;
         }
     }
 }

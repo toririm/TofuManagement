@@ -13,9 +13,6 @@ public class MobCommand {
                 if (e instanceof Monster) {
                     ((Monster) e).setHealth(0);
                     player.sendMessage(e.getName() + " をキルしました");
-                } else if (e instanceof Animals) {
-                    ((Animals) e).setHealth(0);
-                    player.sendMessage(e.getName() + " をキルしました");
                 } else if (e instanceof Slime) {
                     ((Slime) e).setHealth(0);
                     player.sendMessage(e.getName() + " をキルしました");

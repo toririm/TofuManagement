@@ -22,4 +22,6 @@ public class Config {
     public static Location lobbySpawn = new Location(world, -1521, 4, 514, 88, 2);
     //Tofuのロビースポーン地点
     public static Location tofuSpawn = new Location(TofuLobby, -52, 88, 8, -91, 6);
+
+    public static Location textDisplaySpawn = new Location(TofuLobby, -52, 90, 8, -91, 6);
 }
