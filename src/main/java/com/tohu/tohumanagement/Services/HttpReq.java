@@ -89,7 +89,6 @@ public class HttpReq {
             }
             return output.toString();
         } catch (IOException err) {
-            err.printStackTrace();
             return err.toString();
         } finally {
             try {

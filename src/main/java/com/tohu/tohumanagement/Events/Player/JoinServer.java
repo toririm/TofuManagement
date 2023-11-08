@@ -30,9 +30,6 @@ public class JoinServer implements Listener {
 //        if (!serverName.equals("Lobby")) {
 //            ServerManagement.moveServer(player, plugin, "Lobby");
 //        } else {
-        TextDisplay display = world.spawn(Config.textDisplaySpawn, TextDisplay.class);
-        display.remove();
-        display.setText(ChatColor.RED + "チャットの内容を確認してください！");
         player.sendMessage(player.getName() + "さん!こんにちわ！");
         player.sendTitle("ようこそ", "ToFuサーバーへ", 20, 20, 20);
         player.teleport(Config.tofuSpawn);

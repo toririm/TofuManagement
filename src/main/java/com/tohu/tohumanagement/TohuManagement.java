@@ -8,6 +8,7 @@ import com.tohu.tohumanagement.Events.Player.*;
 import com.tohu.tohumanagement.Services.TextUtil;
 import com.tohu.tohumanagement.Services.WorldManagement;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.enchantments.Enchantment;
@@ -19,6 +20,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Vector;
 
 public final class TohuManagement extends JavaPlugin {
 
@@ -27,7 +30,20 @@ public final class TohuManagement extends JavaPlugin {
         // Plugin startup log
 
         getLogger().info("TohuManagement is enabled");
-        getCommand("tofu").setExecutor(new Tofu());
+        World main = Bukkit.getWorld("world");
+
+        //remove all text displays
+        for (TextDisplay display: Objects.requireNonNull(main).getEntitiesByClass(TextDisplay.class)) {
+            display.remove();
+        }
+        TextDisplay display = Objects.requireNonNull(main).spawn(Config.textDisplaySpawn, TextDisplay.class);
+
+        display.setText(ChatColor.RED + "チャットの内容を確認してください！");
+        display.setRotation(90, 0);
+        display.setShadowed(true);
+        display.setDisplayWidth(5);
+
+        Objects.requireNonNull(getCommand("tofu")).setExecutor(new Tofu());
         List<World> worlds = Bukkit.getServer().getWorlds();
         for (World world : worlds) {
             WorldManagement.saveWorld(world);

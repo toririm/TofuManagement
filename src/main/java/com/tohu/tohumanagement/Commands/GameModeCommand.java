@@ -12,7 +12,10 @@ import java.util.Objects;
 
 public class GameModeCommand {
     public static boolean gameModeCommand(String type, Player player, TohuManagement plugin) {
-        if (type.equals("survival") || type.equals("creative") || type.equals("adventure") || type.equals("spectator")) {
+        if (type == null) {
+            player.sendMessage(ChatColor.RED + "!!!" + ChatColor.WHITE + "コマンドが間違えてるよ" + ChatColor.RED + "!!!");
+            return false;
+        } else if (type.equals("survival") || type.equals("creative") || type.equals("adventure") || type.equals("spectator")) {
             GameMode gameMode = GameMode.valueOf(type.toUpperCase());
             PlayerManagement.changeGameMode(player, gameMode);
             if (type.equals("survival")) player.sendMessage("ゲームモードをサバイバルに変更しました");
