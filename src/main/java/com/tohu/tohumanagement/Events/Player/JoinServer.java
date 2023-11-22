@@ -7,12 +7,9 @@ import com.tohu.tohumanagement.Services.ServerManagement;
 import com.tohu.tohumanagement.TohuManagement;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.TextDisplay;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-
-import java.io.IOException;
 
 public class JoinServer implements Listener {
     TohuManagement plugin;
@@ -22,7 +19,7 @@ public class JoinServer implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) throws IOException {
+    public void onPlayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
         World world = player.getWorld();
         String serverName = Bukkit.getServer().getMotd();

@@ -31,6 +31,7 @@ public class InteractEvent implements Listener {
                     case LAVA_BUCKET:
                     case FLINT_AND_STEEL:
                     case FIRE_CHARGE:
+                        player.sendMessage("このアイテムは使用できません");
                         e.setUseItemInHand(Event.Result.DENY);
                 }
             }

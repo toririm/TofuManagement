@@ -4,7 +4,9 @@ import com.tohu.tohumanagement.Commands.Tofu;
 import com.tohu.tohumanagement.Events.Block.BreakEvent;
 import com.tohu.tohumanagement.Events.Block.ExplodeEvent;
 import com.tohu.tohumanagement.Events.Block.PlaceEvent;
+import com.tohu.tohumanagement.Events.Entity.DamageEvent;
 import com.tohu.tohumanagement.Events.Player.*;
+import com.tohu.tohumanagement.Services.Ranking;
 import com.tohu.tohumanagement.Services.TextUtil;
 import com.tohu.tohumanagement.Services.WorldManagement;
 import org.bukkit.Bukkit;
@@ -12,6 +14,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.NPC;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TextDisplay;
 import org.bukkit.event.EventHandler;
@@ -19,19 +22,22 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Vector;
+import java.util.*;
 
 public final class TohuManagement extends JavaPlugin {
+    Map<String, Integer> ranking = new HashMap<String, Integer>(){
+        {
+            put("player1", 10);
+            put("player2", 20);
+            put("player3", 40);
+        }
+    };
 
     @Override
     public void onEnable() {
         // Plugin startup log
-
         getLogger().info("TohuManagement is enabled");
         World main = Bukkit.getWorld("world");
-
         //remove all text displays
         for (TextDisplay display: Objects.requireNonNull(main).getEntitiesByClass(TextDisplay.class)) {
             display.remove();
@@ -58,6 +64,7 @@ public final class TohuManagement extends JavaPlugin {
         new InteractEvent(this);
         new TeleportEndGatewayEvent(this);
         new ChatEvent(this);
+        new DamageEvent(this);
         for (World world: Bukkit.getServer().getWorlds()) {
             for (Player player: world.getPlayers()) {
                 player.sendMessage("サーバを再起動しました");
